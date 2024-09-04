@@ -10,4 +10,7 @@ router.get('/', customerConroller.homepage);
 router.get('/add', customerConroller.addCustomer);
 router.post('/add', customerConroller.postCustomer);
 
+router.get('/view/:id', customerConroller.view);
+
+
 module.exports = router;

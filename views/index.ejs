@@ -38,15 +38,15 @@
 
                 <div class="d-flex flex-row justify-content-end gap-2">
 
-                  <a href="/view/<% element._id %> " type="button" class="btn btn-sm btn-primary">
+                  <a href="/view/<%= element._id %> " type="button" class="btn btn-sm btn-primary">
                     <i class="bi bi-eye"></i>
                   </a>
 
-                  <a href="/edit/<% element._id %>" type="button" class="btn btn-sm btn-warning">
+                  <a href="/edit/<%= element._id %>" type="button" class="btn btn-sm btn-warning">
                     <i class="bi bi-pencil"></i>
                   </a>
 
-                  <form action="/edit/<% element.id %>?_method=DELETE" method="POST" class="position-relative">
+                  <form action="/edit/<%= element.id %>?_method=DELETE" method="POST" class="position-relative">
                     <button type="submit" class="btn btn-sm btn-danger">
                       <i class="bi bi-person-x"></i>
                     </button>
