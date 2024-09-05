@@ -23,17 +23,15 @@
       </nav>
     </div>
   </div>
-  <div class="col text-end fw-lighter">
+  <div class="row text-end fw-lighter">
     <b>UserId : <%= customer._id %> </b>
-  </div>
-  <div class="col text-end fw-lighter">
     <b>UpdatedAt : <%= new Date(customer.updatedAt).toUTCString() %></b>
   </div>
   <div>
   </div>
 </div>
 
-<form action="/add" method="POST">
+<form action="/edit/<%= customer._id%>?_method=PUT" method="POST">
 
   <div class=" row form-group mb-4">
 
@@ -92,7 +90,11 @@
           Are You Sure You Want To Delete This Modal
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" >Delete</button>
+
+          <form action="/edit/<%= customer._id %>?_method=DELETE" method="POST" class="position-relative">
+          <button  type="submit" class="btn btn-danger" >Delete </button>
+          </form>
+
           <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Close</button>
         </div>
       </div>

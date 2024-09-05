@@ -1,3 +1,4 @@
+const customer = require('../models/customer');
 const Customer = require('../models/customer')
 const moongoose = require('mongoose')
 
@@ -132,3 +133,40 @@ exports.edit = async (req, res) => {
     console.log();
   }
 }
+
+/**
+ * GET /
+ * Update Customer Data
+ */
+
+exports.editPost = async (req, res) => {
+  try {
+    await Customer.findByIdAndUpdate(req.params.id, {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      tel: req.body.tel,
+      email: req.body.email,
+      details: req.body.details,
+      updatedAt: Date.now(),
+    }).where();
+    await res.redirect(`/edit/${req.params.id}`)
+    // console.log('redirected');
+  } catch (error) {
+    console.log();
+  }
+}
+
+
+/**
+ * GET /
+ * Delete Customer Data
+ */
+exports.deleteCustomer = async (req, res) => {
+  try {
+    await Customer.deleteOne({_id:req.params.id})
+    res.redirect('/')
+  } catch (error) {
+    console.log(error);
+  }
+}
+

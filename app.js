@@ -4,6 +4,8 @@ const express = require('express');
 const expressLayout = require('express-ejs-layouts');
 
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
+
 
 const session = require('express-session');
 const connectDb = require('./server/config/db')
@@ -30,7 +32,10 @@ app.use(
 )
 
 // Flash Messages
-app.use(flash({ sessionKeyName: 'flashMessage'}))
+app.use(flash({ sessionKeyName: 'flashMessage' }))
+
+// Method Override
+app.use(methodOverride('_method'));
 
 // Templating Engine
 app.use(expressLayout);

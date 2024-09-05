@@ -13,5 +13,9 @@ router.post('/add', customerConroller.postCustomer);
 router.get('/view/:id', customerConroller.view);
 
 router.get('/edit/:id', customerConroller.edit);
+router.put('/edit/:id', customerConroller.editPost);
+
+router.delete('/edit/:id', customerConroller.deleteCustomer);
+
 
 module.exports = router;
