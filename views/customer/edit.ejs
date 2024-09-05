@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h2>Edit,
+    <%= customer.firstName %>!
+  </h2>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
+      <button class="btn btn-sm btn-outline-secondary"> ? </button>
+    </div>
+  </div>
+</div>
+
+<div class="">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+          <li class="breadcrumb-item active">
+            <%= customer.firstName %>
+              <%= customer.lastName %>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="col text-end fw-lighter">
+    <b>UserId : <%= customer._id %> </b>
+  </div>
+  <div class="col text-end fw-lighter">
+    <b>UpdatedAt : <%= new Date(customer.updatedAt).toUTCString() %></b>
+  </div>
+  <div>
+  </div>
+</div>
+
+<form action="/add" method="POST">
+
+  <div class=" row form-group mb-4">
+
+    <div class="col">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" value="<%= customer.firstName %>"
+        placeholder="First Name" required>
+    </div>
+
+    <div class="col">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" value="<%= customer.lastName %>"
+        placeholder="Last Name" required>
+    </div>
+
+  </div>
+
+  <div class=" row form-group mb-4">
+    <div class="col">
+      <label for="tel">Telephone</label>
+      <input type="text" class="form-control" id="tel" name="tel" value="<%= customer.tel %>" placeholder="Telephone"
+        required>
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" name="email" value="<%= customer.email %>" placeholder="Email"
+        required>
+    </div>
+  </div>
+
+  <div class="form-group mb-4">
+    <label for="details">Customer Details:</label>
+    <div class="col">
+      <textarea class="form-control" name="details" id="details" placeholder="Customer Details" cols="30" rows="12"
+        required> <%= customer.details%></textarea>
+    </div>
+  </div>
+
+  <div class="form-group d-flex gap-4 mb-4">
+    <button type="submit" class="btn btn-primary"> Update Customer</button>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Delete Customer
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are You Sure You Want To Delete This Modal
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" >Delete</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</form>

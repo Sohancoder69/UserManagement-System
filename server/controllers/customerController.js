@@ -95,7 +95,7 @@ exports.postCustomer = async (req, res) => {
 
 exports.view = async (req, res) => {
   try {
-    const customer = await Customer.findOne({_id: req.params.id})
+    const customer = await Customer.findOne({ _id: req.params.id })
 
     const locals = {
       title: ' View Customer Data ',
@@ -103,6 +103,26 @@ exports.view = async (req, res) => {
     }
 
     res.render('customer/view', {
+      locals,
+      customer,
+    })
+
+
+  } catch (error) {
+    console.log();
+  }
+}
+
+exports.edit = async (req, res) => {
+  try {
+    const customer = await Customer.findOne({ _id: req.params.id })
+
+    const locals = {
+      title: ' View Customer Data ',
+      description: 'Free NodeJs User Mangement System'
+    }
+
+    res.render('customer/edit', {
       locals,
       customer,
     })
