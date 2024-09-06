@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<form action="/edit/<%= customer._id%>?_method=PUT" method="POST">
+<form action="/edit/<%= customer._id%>?_method=DELETE" method="POST">
 
   <div class=" row form-group mb-4">
 
@@ -73,13 +73,14 @@
 
   <div class="form-group d-flex gap-4 mb-4">
     <button type="submit" class="btn btn-primary"> Update Customer</button>
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="deleteButton"
+      data-bs-target="#deleteButtonModal">
       Delete Customer
     </button>
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteButtonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -87,14 +88,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are You Sure You Want To Delete This Modal
+          Are You Sure You Want To Delete This Customer
         </div>
         <div class="modal-footer">
-
           <form action="/edit/<%= customer._id %>?_method=DELETE" method="POST" class="position-relative">
-          <button  type="submit" class="btn btn-danger" >Delete </button>
+            <button type="submit" class="btn btn-danger">Delete Customer </button>
           </form>
-
           <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Close</button>
         </div>
       </div>

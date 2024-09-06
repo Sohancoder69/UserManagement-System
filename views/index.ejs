@@ -15,54 +15,77 @@
   <% }) %>
 
     <div class="table-responsive">
-
-      <table class=" table table-striped table-sm">
-        <thead>
-          <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Telephone</th>
-            <th scope="col">Email</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% customers.forEach(element=> { %>
+      <% if (customers !='' ) { %>
+        <table class=" table table-striped table-sm">
+          <thead>
             <tr>
-              <td><%- element.firstName %></td>
-              <td><%- element.lastName %></td>
-              <td><%- element.tel %></td>
-              <td><%- element.email %></td>
-              <td class="text-end">
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Telephone</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
 
-                <div class="d-flex flex-row justify-content-end gap-2">
+          <tbody>
+            <% customers.forEach(element=> { %>
+              <tr>
+                <td><%- element.firstName %></td>
+                <td><%- element.lastName %></td>
+                <td><%- element.tel %></td>
+                <td><%- element.email %></td>
+                <td class="text-end">
 
-                  <a href="/view/<%= element._id %> " type="button" class="btn btn-sm btn-primary">
-                    <i class="bi bi-eye"></i>
-                  </a>
+                  <div class="d-flex flex-row justify-content-end gap-2">
+                    <a href="/view/<%= element._id %> " type="button" class="btn btn-sm btn-primary">
+                      <i class="bi bi-eye"></i>
+                    </a>
 
-                  <a href="/edit/<%= element._id %>" type="button" class="btn btn-sm btn-warning">
-                    <i class="bi bi-pencil"></i>
-                  </a>
+                    <a href="/edit/<%= element._id %>" type="button" class="btn btn-sm btn-warning">
+                      <i class="bi bi-pencil"></i>
+                    </a>
 
-                  <form action="/edit/<%= element.id %>?_method=DELETE" method="POST" class="position-relative">
-                    <button type="submit" class="btn btn-sm btn-danger">
+                    <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                      data-bs-target="#deleteButtonModal">
                       <i class="bi bi-person-x"></i>
                     </button>
-                  </form>
 
-                </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteButtonModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are You Sure You Want To Delete This Customer
+                          </div>
+                          <div class="modal-footer">
+                            <form action="/edit/<%= element._id %>?_method=DELETE" method="POST"
+                              class="position-relative">
+                              <button type="submit" class="btn btn-danger">Delete Customer </button>
+                            </form>
+                            <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
 
-              </td>
+                  </div>
+                </td>
 
-            </tr>
-            <% }) %>
-        </tbody>
+              </tr>
+              <% }) %>
+          </tbody>
 
 
-      </table>
+        </table>
+        <% } else { %>
+          <h2>No Customers Found</h2>
+          <% } %>
 
 
     </div>
@@ -71,7 +94,7 @@
       <nav aria-label="Dashboard Pagination">
         <ul class="pagination justify-content-center mt-5">
 
-          <% if ( current == 1) { %>
+          <% if ( current==1) { %>
             <li class="page-item disabled"><a class="page-link" href="#">First</a></li>
             <% } else { %>
               <li class="page-item"><a class="page-link" href="/?page=1">First</a></li>
@@ -82,6 +105,28 @@
                   <% if (i !==1) { %>
                     <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
                     <% } %>
+
+                      <% for(; i <=(Number(current) + 4) && i <=pages; i++ ) { %>
+                        <% if (i==current) { %>
+                          <li class="page-item disabled"><a href="#" class="page-link">
+                              <%= i %>
+                            </a></li>
+                          <% } else { %>
+                            <li class="page-item"><a href="/?page=<%= i %>" class="page-link">
+                                <%= i %>
+                              </a></li>
+                            <% } %>
+                              <% if (i == Number(current) + 4 && i < pages) { %>
+                                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                                <% } %>
+                                  <% } %>
+
+                                    <% if (current==pages) { %>
+                                      <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
+                                      <% } else { %>
+                                        <li class="page-item"><a href="/?page=<%= pages %>" class="page-link">Last</a>
+                                        </li>
+                                        <% } %>
 
         </ul>
       </nav>
